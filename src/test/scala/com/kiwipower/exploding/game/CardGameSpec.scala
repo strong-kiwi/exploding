@@ -63,12 +63,6 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       game.hasPlayerLost should be(false)
     }
 
-    "have result of loose when explosive card is drawn" in {
-      val game = new CardGame(player, List(Card(cardType = EXPLOSIVE)))
-      game.drawCard()
-      game.hasPlayerLost should be(true)
-    }
-
     "discard blank card when blank card is drawn and draw pile is reduced" in {
       val game = new CardGame(player, List(Card()))
       val playerCardsBefore = player.cards
@@ -119,6 +113,25 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       game.drawCard()
 
       player.cards should have size (2)
+    }
+
+    "have result of loose when exploded card is drawn and the player has no defuse cards" in {
+      val game = new CardGame(player, List(Card(cardType = EXPLOSIVE)))
+      game.drawCard()
+      game.hasPlayerLost should be(true)
+    }
+
+    "discard the players defuse card and put the exploding card back" in {
+      val player = new Player()
+      player.addCard(Card(DEFUSE))
+      val game = new CardGame(player, List(Card(cardType = EXPLOSIVE)))
+
+      game.drawPile should have size (1)
+
+      game.drawCard()
+
+      game.drawPile should have size (1)
+      game.hasPlayerLost should be(false)
     }
 
   }

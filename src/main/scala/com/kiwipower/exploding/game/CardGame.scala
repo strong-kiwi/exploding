@@ -34,7 +34,13 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
         player.addCard(lastDrawnCard)
         playerLost = false
       case EXPLOSIVE =>
-        playerLost = true
+        if (player.hasDefuseCard) {
+          player.removeADefuseCard()
+          drawPile = lastDrawnCard :: drawPile
+          playerLost = false
+        } else {
+          playerLost = true
+        }
     }
 
     lastDrawnCard
