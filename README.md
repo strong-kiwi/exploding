@@ -20,6 +20,7 @@ For both of the above choices, it should be clear what to do from the options pr
 ## Assumptions
 * draw pile has cards already arranged face down
 * face down means card is drawn from the top
+* no concept of discard pile as it's not needed.
 
 ## Developers
 Project depends on SBT (prerequisite)
