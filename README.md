@@ -5,6 +5,8 @@ Card game where user has option to draw from a set of cards.
 If the card drawn is an explosive card the player looses.
 Player continue to play or quit while they are ahead.
 
+Player is given one defuse card, if an explosive card is encountered - player will be saved.
+
 This is for iteration 2, see: [Iteration 2 Specifications](docs/specification.md).
 This code will be on the master branch.
 
@@ -19,8 +21,10 @@ You have 2 options, use sbt to run the card game or package the card game.
 For both of the above choices, it should be clear what to do from the options provided.
 
 ## Assumptions
-* draw pile has cards already arranged face down
-* face down means card is drawn from the top
+* draw pile has cards already arranged face down.
+* face down means card is drawn from the top.
+* Defuse cards will be added to the pile initially (as per spec) *"Add three Defuse cards to the deck, making a total of 20"*.
+* Taking out 2x defuse cards and putting them back, is not required due to reshuffling after initial setup draw & shuffle.
 
 ## Developers
 Project depends on SBT (prerequisite)
