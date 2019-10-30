@@ -1,6 +1,7 @@
 package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.Card
+import com.kiwipower.exploding.game.domain.CardType._
 import org.scalatest.{ Matchers, WordSpecLike }
 
 class CardGameSpec extends WordSpecLike with Matchers {
@@ -32,7 +33,7 @@ class CardGameSpec extends WordSpecLike with Matchers {
     }
 
     "have result of loose when explosive card is drawn" in {
-      val game = new CardGame(List(Card(explosive = true)))
+      val game = new CardGame(List(Card(cardType = EXPLOSIVE)))
       game.draw()
       game.hasPlayerLost should be(true)
     }

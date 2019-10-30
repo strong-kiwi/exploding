@@ -1,5 +1,7 @@
 package com.kiwipower.exploding.game.domain
 
-case class Card(explosive: Boolean = false) {
-  override def toString(): String = if (explosive) "EXPLOSIVE" else "BLANK"
+import com.kiwipower.exploding.game.domain.CardType.CardType
+
+case class Card(cardType: CardType = CardType.BLANK) {
+  override def toString(): String = cardType.toString
 }

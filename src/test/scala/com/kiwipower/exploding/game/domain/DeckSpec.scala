@@ -1,5 +1,6 @@
 package com.kiwipower.exploding.game.domain
 
+import com.kiwipower.exploding.game.domain.CardType._
 import org.scalatest.{ BeforeAndAfter, Matchers, WordSpecLike }
 
 class DeckSpec extends WordSpecLike with Matchers with BeforeAndAfter {
@@ -16,12 +17,12 @@ class DeckSpec extends WordSpecLike with Matchers with BeforeAndAfter {
     }
 
     "have 16 blank cards" in {
-      val blankCards = deck.cards.filter(!_.explosive)
+      val blankCards = deck.cards.filter(c => c.cardType != EXPLOSIVE)
       blankCards should have size (16)
     }
 
     "have 1 explosive card" in {
-      val explodingCards = deck.cards.filter(_.explosive)
+      val explodingCards = deck.cards.filter(c => c.cardType == EXPLOSIVE)
       explodingCards should have size (1)
     }
 

@@ -1,5 +1,6 @@
 package com.kiwipower.exploding.game
 
+import com.kiwipower.exploding.game.domain.CardType._
 import com.kiwipower.exploding.game.domain.{ Card, Deck }
 
 class CardGame(cards: List[Card]) {
@@ -12,7 +13,7 @@ class CardGame(cards: List[Card]) {
     lastDrawnCard
   }
 
-  def hasPlayerLost: Boolean = lastDrawnCard.explosive
+  def hasPlayerLost: Boolean = lastDrawnCard.cardType == EXPLOSIVE
 }
 
 object CardGame {
