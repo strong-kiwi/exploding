@@ -8,6 +8,7 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
   var drawPile: List[Card] = cards
   var lastDrawnCard: Card = _
   var player: Player = cardPlayer
+  var playerLost: Boolean = _
 
   def setup(): Unit = {
     val defuseCard = takeOnCardFromDrawPile(DEFUSE)
@@ -25,10 +26,20 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
   def drawCard(): Card = {
     lastDrawnCard = drawPile.head
     drawPile = drawPile.tail
+
+    lastDrawnCard.cardType match {
+      case BLANK =>
+        playerLost = false
+      case DEFUSE =>
+        playerLost = false
+      case EXPLOSIVE =>
+        playerLost = true
+    }
+
     lastDrawnCard
   }
 
-  def hasPlayerLost: Boolean = lastDrawnCard.cardType == EXPLOSIVE
+  def hasPlayerLost: Boolean = playerLost
 }
 
 object CardGame {

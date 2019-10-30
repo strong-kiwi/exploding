@@ -69,5 +69,24 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       game.hasPlayerLost should be(true)
     }
 
+    "discard blank card when blank card is drawn and draw pile is reduced" in {
+      val game = new CardGame(player, List(Card()))
+      val playerCardsBefore = player.cards
+      val drawPileCardsBefore = game.drawPile
+
+      playerCardsBefore should have size (0)
+      drawPileCardsBefore should have size (1)
+
+      game.drawCard()
+
+      val playerCardsAfter = player.cards
+      playerCardsAfter should have size (0)
+
+      val drawPileCardsAfter = game.drawPile
+      drawPileCardsAfter should have size (0)
+
+      game.hasPlayerLost should be(false)
+    }
+
   }
 }
