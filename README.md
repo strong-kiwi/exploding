@@ -1,5 +1,9 @@
 # exploding
-Exploding card game
+Exploding card game.
+
+Card game where user has option to draw from a set of cards.
+If the card drawn is an explosive card the player looses.
+Player continue to play or quit while they are ahead.
 
 ## How to play the game
 You will need to do this using a command line terminal.
