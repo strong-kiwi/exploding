@@ -5,6 +5,9 @@ Card game where user has option to draw from a set of cards.
 If the card drawn is an explosive card the player looses.
 Player continue to play or quit while they are ahead.
 
+This is for iteration 2, see: [Iteration 2 Specifications](docs/specification.md).
+This code will be on the master branch.
+
 ## How to play the game
 You will need to do this using a command line terminal.
 
@@ -21,6 +24,13 @@ For both of the above choices, it should be clear what to do from the options pr
 
 ## Developers
 Project depends on SBT (prerequisite)
+
+### Build status
+This project uses Travis CI to build and test this code.
+
+[![Build Status](https://travis-ci.org/power-of-kiwi/exploding.svg?branch=master)](https://travis-ci.org/power-of-kiwi/exploding)
+
+Click on the icon above to see the build status.
 
 ### Building
 * `sbt clean compile` will compile the code
