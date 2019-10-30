@@ -24,6 +24,13 @@ For both of the above choices, it should be clear what to do from the options pr
 ## Developers
 Project depends on SBT (prerequisite)
 
+### Build status
+This project uses Travis CI to build and test this code.
+
+[![Build Status](https://travis-ci.org/power-of-kiwi/exploding.svg?branch=iteration1)](https://travis-ci.org/power-of-kiwi/exploding)
+
+Click on the icon above to see the build status.
+
 ### Building
 * `sbt clean compile` will compile the code
 * `sbt clean test` will run the various tests
