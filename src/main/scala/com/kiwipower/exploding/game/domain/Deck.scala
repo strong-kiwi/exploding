@@ -7,16 +7,15 @@ import scala.util.Random
 class Deck {
   val blankCards: List[Card] = List.fill(16)(Card())
   val explodingCards: List[Card] = List(Card(cardType = EXPLOSIVE))
-  var cards: List[Card] = explodingCards ++ blankCards
+  val defuseCards: List[Card] = List.fill(3)(Card(cardType = DEFUSE))
+
+  var cards: List[Card] = explodingCards ++ blankCards ++ defuseCards
 
   def shuffle() {
-    val explodingCard = cards.head
-    val blankCards = cards.tail
-
-    val randomPosition = Random.between(1, 17)
-    val (before, after) = blankCards.splitAt(randomPosition)
-
-    cards = before ++ List(explodingCard) ++ after
+    val cardsWithIndex = cards.zipWithIndex
+    val randomPositions = Random.shuffle(cardsWithIndex.map(_._2))
+    val shuffledCards = for (i <- randomPositions) yield cardsWithIndex(i)._1
+    cards = shuffledCards
   }
 
 }
