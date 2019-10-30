@@ -1,4 +1,4 @@
-package com.kiwipower.exploding.game
+package com.kiwipower.exploding.game.domain
 
 import org.scalatest.{ BeforeAndAfter, Matchers, WordSpecLike }
 
@@ -28,7 +28,9 @@ class DeckSpec extends WordSpecLike with Matchers with BeforeAndAfter {
     "be shuffled" in {
       val cardsBefore = deck.cards
       cardsBefore should have size (17)
+
       deck.shuffle()
+
       val cardsAfter = deck.cards
       cardsAfter should have size (17)
       cardsBefore should not equal (cardsAfter)

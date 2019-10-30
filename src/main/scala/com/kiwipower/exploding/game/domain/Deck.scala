@@ -1,4 +1,4 @@
-package com.kiwipower.exploding.game
+package com.kiwipower.exploding.game.domain
 
 import scala.util.Random
 
