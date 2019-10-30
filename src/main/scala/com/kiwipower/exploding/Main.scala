@@ -1,9 +1,14 @@
 package com.kiwipower.exploding
 
 import com.kiwipower.exploding.game.CardGame
+import com.kiwipower.exploding.game.domain.{ Deck, Player }
 
 object Main extends App {
-  val game = CardGame()
+  val player = new Player()
+  val cardDeck = new Deck()
+
+  val game = CardGame(player, cardDeck)
+  game.setup()
 
   def displayGameOptions(): Unit = {
     val gameOptions = "Exploding card game!\n" +

@@ -1,11 +1,24 @@
 package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.CardType._
-import com.kiwipower.exploding.game.domain.{ Card, Deck }
+import com.kiwipower.exploding.game.domain.{ Card, Deck, Player }
 
-class CardGame(cards: List[Card]) {
+class CardGame(cardPlayer: Player, cards: List[Card]) {
   var drawPile: List[Card] = cards
   var lastDrawnCard: Card = _
+  var player: Player = cardPlayer
+
+  def setup(): Unit = {
+    val defuseCard = takeOnCardFromDrawPile(DEFUSE)
+    player.addCard(defuseCard)
+  }
+
+  def takeOnCardFromDrawPile(cardType: CardType): Card = {
+    val cardTypesSought = drawPile.filter(c => c.cardType == cardType)
+    val cardSought = cardTypesSought.head
+    drawPile = drawPile.filter(c => c.cardType != cardType) ++ cardTypesSought.tail
+    cardSought
+  }
 
   def draw(): Card = {
     lastDrawnCard = drawPile.head
@@ -17,10 +30,8 @@ class CardGame(cards: List[Card]) {
 }
 
 object CardGame {
-  def apply(): CardGame = {
-    val cardDeck = new Deck()
+  def apply(player: Player, cardDeck: Deck): CardGame = {
     cardDeck.shuffle()
-
-    new CardGame(cardDeck.cards)
+    new CardGame(player, cardDeck.cards)
   }
 }
