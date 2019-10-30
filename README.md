@@ -25,6 +25,7 @@ For both of the above choices, it should be clear what to do from the options pr
 * face down means card is drawn from the top.
 * Defuse cards will be added to the pile initially (as per spec) *"Add three Defuse cards to the deck, making a total of 20"*.
 * Taking out 2x defuse cards and putting them back, is not required due to reshuffling after initial setup draw & shuffle.
+* No discarded pile is used (as it is not needed)
 
 ## Developers
 Project depends on SBT (prerequisite)

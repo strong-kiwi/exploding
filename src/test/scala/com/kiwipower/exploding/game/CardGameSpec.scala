@@ -88,5 +88,38 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       game.hasPlayerLost should be(false)
     }
 
+    "add defuse card to players hand when drawn and draw pile is reduced" in {
+      val game = new CardGame(player, List(Card(DEFUSE)))
+      val playerCardsBefore = player.cards
+      val drawPileCardsBefore = game.drawPile
+
+      playerCardsBefore should have size (0)
+      drawPileCardsBefore should have size (1)
+
+      game.drawCard()
+
+      val playerCardsAfter = player.cards
+      playerCardsAfter should have size (1)
+
+      val drawPileCardsAfter = game.drawPile
+      drawPileCardsAfter should have size (0)
+
+      game.hasPlayerLost should be(false)
+    }
+
+    "give a player a new card when it is their turn after setup and check when they draw another defuse card" in {
+      val player = new Player()
+
+      val game = new CardGame(player, List(Card(DEFUSE), Card(DEFUSE)))
+      game.setup()
+
+      player.cards should have size (1)
+      player.cards should contain(Card(cardType = DEFUSE))
+
+      game.drawCard()
+
+      player.cards should have size (2)
+    }
+
   }
 }

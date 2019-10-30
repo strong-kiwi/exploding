@@ -31,6 +31,7 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
       case BLANK =>
         playerLost = false
       case DEFUSE =>
+        player.addCard(lastDrawnCard)
         playerLost = false
       case EXPLOSIVE =>
         playerLost = true
