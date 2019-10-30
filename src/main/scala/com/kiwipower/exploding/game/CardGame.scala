@@ -11,6 +11,8 @@ class CardGame(cards: List[Card]) {
     drawPile = drawPile.tail
     lastDrawnCard
   }
+
+  def hasPlayerLost: Boolean = lastDrawnCard.exploding
 }
 
 object CardGame {
