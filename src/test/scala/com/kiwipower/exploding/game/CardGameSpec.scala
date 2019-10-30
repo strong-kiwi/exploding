@@ -25,9 +25,22 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       game.drawPile should have size (19)
     }
 
-    "have cards shuffled and have cards ready to draw" in {
+    "have cards shuffled after setup and have cards ready to draw" in {
       val game = CardGame(player, cardDeck)
+
+      game.setup()
+
+      game.drawPile should not equal (cardDeck.cards)
+    }
+
+    "have the ability to shuffle cards" in {
+      val game = new CardGame(player, cardDeck.cards)
       game.drawPile should have size (20)
+
+      val shuffledCards = game.shuffle(game.drawPile)
+
+      shuffledCards should have size (20)
+      shuffledCards should not equal (game.drawPile)
     }
 
     "draw one card from the top of the draw pile" in {

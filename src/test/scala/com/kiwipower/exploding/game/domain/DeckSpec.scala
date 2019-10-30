@@ -31,16 +31,5 @@ class DeckSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       blankCards should have size (3)
     }
 
-    "be shuffled" in {
-      val cardsBefore = deck.cards
-      cardsBefore should have size (20)
-
-      deck.shuffle()
-
-      val cardsAfter = deck.cards
-      cardsAfter should have size (20)
-      cardsBefore should not equal (cardsAfter)
-    }
-
   }
 }
