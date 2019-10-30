@@ -2,9 +2,10 @@ package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.CardType._
 import com.kiwipower.exploding.game.domain.{ Card, Deck, Player }
-import com.kiwipower.exploding.game.logic.CardShuffleLogic
+import com.kiwipower.exploding.game.logic.{ CardShuffler, IndexShuffler }
 
-class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
+class CardGame(cardPlayer: Player, cards: List[Card]) {
+  val cardShuffler = new CardShuffler(new IndexShuffler)
   var drawPile: List[Card] = cards
   var lastDrawnCard: Card = _
   var player: Player = cardPlayer
@@ -14,6 +15,10 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
     val defuseCard = takeOnCardFromDrawPile(DEFUSE)
     player.addCard(defuseCard)
     drawPile = shuffle(drawPile)
+  }
+
+  def shuffle(cards: List[Card]): List[Card] = {
+    cardShuffler.shuffle(cards)
   }
 
   def takeOnCardFromDrawPile(cardType: CardType): Card = {
