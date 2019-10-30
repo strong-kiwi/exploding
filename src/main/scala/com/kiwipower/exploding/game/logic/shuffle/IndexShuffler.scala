@@ -1,4 +1,4 @@
-package com.kiwipower.exploding.game.logic
+package com.kiwipower.exploding.game.logic.shuffle
 
 import scala.util.Random
 

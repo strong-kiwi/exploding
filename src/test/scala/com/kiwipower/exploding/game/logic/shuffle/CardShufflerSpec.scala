@@ -1,4 +1,4 @@
-package com.kiwipower.exploding.game.logic
+package com.kiwipower.exploding.game.logic.shuffle
 
 import com.kiwipower.exploding.game.domain.Card
 import com.kiwipower.exploding.game.domain.CardType._

@@ -2,10 +2,10 @@ package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.CardType._
 import com.kiwipower.exploding.game.domain.{ Card, Deck, Player }
-import com.kiwipower.exploding.game.exception.OutOfCardsException
-import com.kiwipower.exploding.game.logic.{ CardShuffler, IndexShuffler }
+import com.kiwipower.exploding.game.logic.DrawCardLogic
+import com.kiwipower.exploding.game.logic.shuffle.{ CardShuffler, IndexShuffler }
 
-class CardGame(cardPlayer: Player, cards: List[Card]) {
+class CardGame(cardPlayer: Player, cards: List[Card]) extends DrawCardLogic {
   val cardShuffler = new CardShuffler(new IndexShuffler)
   var drawPile: List[Card] = cards
   var lastDrawnCard: Card = _
@@ -29,33 +29,19 @@ class CardGame(cardPlayer: Player, cards: List[Card]) {
     cardSought
   }
 
-  def drawCard(): Card = {
-    if (drawPile.isEmpty)
-      throw new OutOfCardsException()
-
-    lastDrawnCard = drawPile.head
-    drawPile = drawPile.tail
-
-    lastDrawnCard.cardType match {
-      case BLANK =>
-        playerLost = false
-      case DEFUSE =>
-        player.addCard(lastDrawnCard)
-        playerLost = false
-      case EXPLOSIVE =>
-        if (player.hasDefuseCard) {
-          player.removeADefuseCard()
-          drawPile = shuffle(lastDrawnCard :: drawPile)
-          playerLost = false
-        } else {
-          playerLost = true
-        }
-    }
-
-    lastDrawnCard
-  }
-
   def hasPlayerLost: Boolean = playerLost
+
+  override def getDrawPile: List[Card] = drawPile
+
+  override def setDrawPile(updatedDrawPile: List[Card]) { drawPile = updatedDrawPile }
+
+  override def getLastDrawnCard: Card = lastDrawnCard
+
+  override def setLastDrawnCard(card: Card) { lastDrawnCard = card }
+
+  override def setPlayerLostState(state: Boolean) { playerLost = state }
+
+  override def getPlayer: Player = player
 }
 
 object CardGame {
