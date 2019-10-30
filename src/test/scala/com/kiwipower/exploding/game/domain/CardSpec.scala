@@ -8,12 +8,22 @@ class CardSpec extends WordSpecLike with Matchers {
 
     "be specified as blank by default" in {
       val card = Card()
-      card.exploding should be(false)
+      card.explosive should be(false)
     }
 
-    "be specified as exploding" in {
-      val card = Card(exploding = true)
-      card.exploding should be(true)
+    "be specified as explosive" in {
+      val card = Card(explosive = true)
+      card.explosive should be(true)
+    }
+
+    "to string of blank card should be BLANK" in {
+      val card = Card()
+      card.toString() should be("BLANK")
+    }
+
+    "to string of explosive card should be EXPLOSIVE" in {
+      val card = Card(explosive = true)
+      card.toString() should be("EXPLOSIVE")
     }
 
   }

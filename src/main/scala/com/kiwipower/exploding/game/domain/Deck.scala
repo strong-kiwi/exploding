@@ -3,7 +3,7 @@ package com.kiwipower.exploding.game.domain
 import scala.util.Random
 
 class Deck {
-  var cards = List[Card](Card(exploding = true), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card())
+  var cards = List[Card](Card(explosive = true), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card(), Card())
 
   def shuffle() {
     val explodingCard = cards.head

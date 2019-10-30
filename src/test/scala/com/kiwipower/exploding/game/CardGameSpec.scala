@@ -31,8 +31,8 @@ class CardGameSpec extends WordSpecLike with Matchers {
       game.hasPlayerLost should be(false)
     }
 
-    "have result of loose when exploded card is drawn" in {
-      val game = new CardGame(List(Card(exploding = true)))
+    "have result of loose when explosive card is drawn" in {
+      val game = new CardGame(List(Card(explosive = true)))
       game.draw()
       game.hasPlayerLost should be(true)
     }

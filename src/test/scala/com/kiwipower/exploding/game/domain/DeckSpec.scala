@@ -16,12 +16,12 @@ class DeckSpec extends WordSpecLike with Matchers with BeforeAndAfter {
     }
 
     "have 16 blank cards" in {
-      val blankCards = deck.cards.filter(!_.exploding)
+      val blankCards = deck.cards.filter(!_.explosive)
       blankCards should have size (16)
     }
 
-    "have 1 exploding card" in {
-      val explodingCards = deck.cards.filter(_.exploding)
+    "have 1 explosive card" in {
+      val explodingCards = deck.cards.filter(_.explosive)
       explodingCards should have size (1)
     }
 

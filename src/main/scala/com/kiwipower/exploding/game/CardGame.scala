@@ -12,7 +12,7 @@ class CardGame(cards: List[Card]) {
     lastDrawnCard
   }
 
-  def hasPlayerLost: Boolean = lastDrawnCard.exploding
+  def hasPlayerLost: Boolean = lastDrawnCard.explosive
 }
 
 object CardGame {
