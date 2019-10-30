@@ -24,22 +24,31 @@ trait DrawCardLogic {
     setDrawPile(getDrawPile.tail)
 
     getLastDrawnCard.cardType match {
-      case BLANK =>
-        setPlayerLostState(false)
-      case DEFUSE =>
-        getPlayer.addCard(getLastDrawnCard)
-        setPlayerLostState(false)
-      case EXPLOSIVE =>
-        if (getPlayer.hasDefuseCard) {
-          getPlayer.removeADefuseCard()
-          setDrawPile(shuffle(getLastDrawnCard :: getDrawPile))
-          setPlayerLostState(false)
-        } else {
-          setPlayerLostState(true)
-        }
+      case BLANK => handleBlankCard()
+      case DEFUSE => handleDefuseCard()
+      case EXPLOSIVE => handleExplosiveCard()
     }
 
     getLastDrawnCard
+  }
+
+  def handleBlankCard() {
+    setPlayerLostState(false)
+  }
+
+  def handleDefuseCard() {
+    getPlayer.addCard(getLastDrawnCard)
+    setPlayerLostState(false)
+  }
+
+  def handleExplosiveCard() {
+    if (getPlayer.hasDefuseCard) {
+      getPlayer.removeADefuseCard()
+      setDrawPile(shuffle(getLastDrawnCard :: getDrawPile))
+      setPlayerLostState(false)
+    } else {
+      setPlayerLostState(true)
+    }
   }
 
   def shuffle(cards: List[Card]): List[Card]
