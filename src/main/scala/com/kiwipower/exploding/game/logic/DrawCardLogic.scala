@@ -42,13 +42,14 @@ trait DrawCardLogic {
   }
 
   def handleExplosiveCard() {
-    if (getPlayer.hasDefuseCard) {
-      getPlayer.removeADefuseCard()
-      setDrawPile(shuffle(getLastDrawnCard :: getDrawPile))
-      setPlayerLostState(false)
-    } else {
+    if (!getPlayer.hasDefuseCard) {
       setPlayerLostState(true)
+      return
     }
+
+    getPlayer.removeADefuseCard()
+    setDrawPile(shuffle(getLastDrawnCard :: getDrawPile))
+    setPlayerLostState(false)
   }
 
   def shuffle(cards: List[Card]): List[Card]
