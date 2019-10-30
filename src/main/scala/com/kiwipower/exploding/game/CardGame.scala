@@ -2,6 +2,7 @@ package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.CardType._
 import com.kiwipower.exploding.game.domain.{ Card, Deck, Player }
+import com.kiwipower.exploding.game.exception.OutOfCardsException
 import com.kiwipower.exploding.game.logic.{ CardShuffler, IndexShuffler }
 
 class CardGame(cardPlayer: Player, cards: List[Card]) {
@@ -29,6 +30,9 @@ class CardGame(cardPlayer: Player, cards: List[Card]) {
   }
 
   def drawCard(): Card = {
+    if (drawPile.isEmpty)
+      throw new OutOfCardsException()
+
     lastDrawnCard = drawPile.head
     drawPile = drawPile.tail
 

@@ -2,6 +2,7 @@ package com.kiwipower.exploding.game
 
 import com.kiwipower.exploding.game.domain.CardType._
 import com.kiwipower.exploding.game.domain.{ Card, Deck, Player }
+import com.kiwipower.exploding.game.exception.OutOfCardsException
 import org.scalatest.{ BeforeAndAfter, Matchers, WordSpecLike }
 
 class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
@@ -148,6 +149,23 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
       drawPileAfter should have size (3)
 
       drawPileBefore should not equal (drawPileAfter)
+    }
+
+    "raise exception when no more cards can be dealt (should not allow)" in {
+      val game = new CardGame(new Player(), List(Card(DEFUSE)))
+      game.setup()
+
+      assertThrows[OutOfCardsException] {
+        game.drawCard()
+      }
+    }
+
+    "have no more cards to deal when last card is drawn" in {
+      val game = new CardGame(new Player(), List(Card(DEFUSE), Card(DEFUSE)))
+      game.setup()
+
+      game.drawCard()
+      game.drawPile should have size (0)
     }
 
   }
