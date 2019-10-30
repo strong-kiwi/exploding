@@ -22,7 +22,7 @@ class CardGame(cardPlayer: Player, cards: List[Card]) extends CardShuffleLogic {
     cardSought
   }
 
-  def draw(): Card = {
+  def drawCard(): Card = {
     lastDrawnCard = drawPile.head
     drawPile = drawPile.tail
     lastDrawnCard

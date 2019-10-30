@@ -25,7 +25,7 @@ object Main extends App {
   }
 
   def takeActionAndSeeResult() {
-    game.draw()
+    game.drawCard()
     println("You drew card:'%s'".format(game.lastDrawnCard))
     if (game.hasPlayerLost) {
       println("***** Game Over - you loose! *******")

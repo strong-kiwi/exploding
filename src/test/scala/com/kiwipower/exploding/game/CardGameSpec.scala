@@ -45,7 +45,7 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
 
     "draw one card from the top of the draw pile" in {
       val game = new CardGame(player, cardDeck.cards)
-      val card = game.draw()
+      val card = game.drawCard()
       card should not be (null)
       game.drawPile should have size (19)
     }
@@ -53,19 +53,19 @@ class CardGameSpec extends WordSpecLike with Matchers with BeforeAndAfter {
     "draw pile should be depleted after all draws" in {
       val game = new CardGame(player, cardDeck.cards)
       val drawPileCount = game.drawPile.size
-      for (i <- 1 to drawPileCount) game.draw()
+      for (i <- 1 to drawPileCount) game.drawCard()
       game.drawPile should have size (0)
     }
 
     "have result of no effect when blank card is drawn" in {
       val game = new CardGame(player, List(Card()))
-      game.draw()
+      game.drawCard()
       game.hasPlayerLost should be(false)
     }
 
     "have result of loose when explosive card is drawn" in {
       val game = new CardGame(player, List(Card(cardType = EXPLOSIVE)))
-      game.draw()
+      game.drawCard()
       game.hasPlayerLost should be(true)
     }
 
