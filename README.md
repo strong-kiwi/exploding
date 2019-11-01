@@ -1,3 +1,9 @@
+# Author 
+Code is written by Eugene Le Roux see: https://www.linkedin.com/in/eugeneleroux
+
+Also other projects (Java & Scala + Multi Microservices composes with docker), see:
+https://github.com/sunday-take-away 
+
 # exploding
 Exploding card game.
 
