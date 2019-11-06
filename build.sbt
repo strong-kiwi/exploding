@@ -7,7 +7,10 @@ version := "0.0.1-SNAPSHOT"
 
 scalaVersion := "2.13.1"
 
-libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.0.8" % Test)
+libraryDependencies ++= Seq(
+  "org.scalatest" %% "scalatest" % "3.0.8" % Test,
+  "org.scalamock" %% "scalamock" % "4.4.0" % Test
+)
 
 mainClass in (Compile, run) := Some("com.kiwipower.exploding.Main")
 mainClass in (Compile, packageBin) := Some("com.kiwipower.exploding.Main")
